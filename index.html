@@ -2,6 +2,7 @@
 <html lang="en">
 
 <head>
+    <link rel="stylesheet" type="text/css" href="background.css">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
@@ -20,30 +21,49 @@
 
     <script src="index.js"></script>
 
-    <button class="open-signup" onclick="openSign()">Sign up</button>
+    <button onclick="document.getElementById('id01').style.display='block'">Sign up</button>
 
-    <div class="signup-form" id="signup" style="display: none;">
-        <form action="action_page.php">
-
-                <h1>Sign Up</h1>
-                <p>Enter your information below to sign up</p>
-                <hr>
-
-                <label for="email">Email</label>
-                <br>
-                <input type="text" id="email" name="email" required><br>
-
-                <label for="makePassw">Password:</label><br>
-                <input type="password" id="makePassw" name="makePassw" minlength="8" required><br>
-
-                <label for="re-Passw">Re-enter Password:</label><br>
-                <input type="password" id="re-Passw" name="re-Passw" minlength="8" required><br>
-
-                <button type="button" id="cancel" name="cancel" onclick="closeSign()">Cancel</button>
-                <button type="submit">Submit</button>
-
+    <!-- The Modal -->
+    <div id="id01" class="modal">
+        <span onclick="document.getElementById('id01').style.display='none'"
+    class="close" title="Close Modal">&times;</span>
+    
+        <!-- Modal Content -->
+        <form class="modal-content animate" action="/action_page.php">
+        <div class="imgcontainer">
+            <img src="img_avatar2.png" alt="Avatar" class="avatar">
+        </div>
+    
+        <div class="container">
+            <label for="uname"><b>Username</b></label>
+            <input type="text" placeholder="Enter Username" name="uname" required>
+    
+            <label for="psw"><b>Password</b></label>
+            <input type="password" placeholder="Enter Password" name="psw" required>
+    
+            <button type="submit">Login</button>
+            <label>
+            <input type="checkbox" checked="checked" name="remember"> Remember me
+            </label>
+        </div>
+    
+        <div class="container" style="background-color:#f1f1f1">
+            <button type="button" onclick="document.getElementById('id01').style.display='none'" class="cancelbtn">Cancel</button>
+            <span class="psw">Forgot <a href="#">password?</a></span>
+        </div>
         </form>
     </div>
+    <script>
+        // Get the modal
+        var modal = document.getElementById('id01');
+        
+        // When the user clicks anywhere outside of the modal, close it
+        window.onclick = function(event) {
+          if (event.target == modal) {
+            modal.style.display = "none";
+          }
+        }
+        </script>
 
 </center>
 
