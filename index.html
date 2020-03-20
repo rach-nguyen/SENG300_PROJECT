@@ -1,21 +1,20 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
+    <title>Login Terminal</title>
+  </head>
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-
-<center>
-
+  <center>
     <label for="uname">User name:</label>
-    <br>
-    <input type="text" id="uname" name="uname" value=""><br>
-    
-    <label for="passw">Password:</label><br>
-    <input type="password" id="passw" name="passw" minlength="8"><br>
-    
+    <br />
+    <input type="text" id="uname" name="uname" value="" /><br />
+
+    <label for="passw">Password:</label><br />
+    <input type="password" id="passw" name="passw" minlength="8" /><br />
+
     <button onclick="getLoginInfo()">Log in</button>
 
     <script src="index.js"></script>
@@ -23,28 +22,38 @@
     <button class="open-signup" onclick="openSign()">Sign up</button>
 
     <div class="signup-form" id="signup" style="display: none;">
-        <form action="action_page.php">
+      <form action="action_page.php">
+        <h1>Sign Up</h1>
+        <p>Enter your information below to sign up</p>
+        <hr />
 
-                <h1>Sign Up</h1>
-                <p>Enter your information below to sign up</p>
-                <hr>
+        <label for="email">Email</label>
+        <br />
+        <input type="text" id="email" name="email" required /><br />
 
-                <label for="email">Email</label>
-                <br>
-                <input type="text" id="email" name="email" required><br>
+        <label for="makePassw">Password:</label><br />
+        <input
+          type="password"
+          id="makePassw"
+          name="makePassw"
+          minlength="8"
+          required
+        /><br />
 
-                <label for="makePassw">Password:</label><br>
-                <input type="password" id="makePassw" name="makePassw" minlength="8" required><br>
+        <label for="re-Passw">Re-enter Password:</label><br />
+        <input
+          type="password"
+          id="re-Passw"
+          name="re-Passw"
+          minlength="8"
+          required
+        /><br />
 
-                <label for="re-Passw">Re-enter Password:</label><br>
-                <input type="password" id="re-Passw" name="re-Passw" minlength="8" required><br>
-
-                <button type="button" id="cancel" name="cancel" onclick="closeSign()">Cancel</button>
-                <button type="submit">Submit</button>
-
-        </form>
+        <button type="button" id="cancel" name="cancel" onclick="closeSign()">
+          Cancel
+        </button>
+        <button type="submit">Submit</button>
+      </form>
     </div>
-
-</center>
-
+  </center>
 </html>
