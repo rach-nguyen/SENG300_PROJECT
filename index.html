@@ -10,9 +10,20 @@
 </head>
 
 <body>
+  <style>
+    body {
+      background-image: url('modal_background.jpg');
+      background-repeat: no-repeat;
+      background-attachment: fixed;
+      background-size: cover;
+    }
+  </style>
+  <!-- Main page-->
   <div class="topnav">
     <a href="#home">Home</a>
-    <button onclick="document.getElementById('id01').style.display='block'">Log in</button>
+    <button onclick="document.getElementById('id01').style.display='block'">
+      Log in
+    </button>
 
     <script src="index.js"></script>
 
@@ -22,7 +33,7 @@
 
   </div>
 
-  <!-- The Modal -->
+  <!-- Sign in Modal -->
   <div id="id01" class="modal">
     <span onclick="document.getElementById('id01').style.display='none'" class="close"
       title="Close Modal">&times;</span>
@@ -43,8 +54,8 @@
         <span class="psw">Forgot <a href="#">password?</a></span>
         </br>
         <label>
-          <input type="checkbox" checked="checked" name="remember" /> Remember
-          me
+          <input type="checkbox" name="remember" /> 
+          Remember me
         </label>
       </div>
 
@@ -69,6 +80,7 @@
     };
   </script>
 
+  <!-- Sign up modal-->
   <div id="id02" class="modal">
     <span onclick="document.getElementById('id02').style.display='none'" class="close"
       title="Close Modal">&times;</span>
