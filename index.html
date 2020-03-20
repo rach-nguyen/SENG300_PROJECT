@@ -2,49 +2,136 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+  <link rel="stylesheet" type="text/css" href="background.css" />
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="shortcut icon" type="image/png" href="logo.png" />
+  <title>Home</title>
 </head>
 
-<center>
-
-    <label for="uname">User name:</label>
-    <br>
-    <input type="text" id="uname" name="uname" value=""><br>
-    
-    <label for="passw">Password:</label><br>
-    <input type="password" id="passw" name="passw" minlength="8"><br>
-    
-    <button onclick="getLoginInfo()">Log in</button>
+<body>
+  <style>
+    body {
+      background-image: url('modal_background.jpg');
+      background-repeat: no-repeat;
+      background-attachment: fixed;
+      background-size: cover;
+    }
+  </style>
+  <!-- Main page-->
+  <div class="topnav">
+    <a href="#home">Home</a>
+    <button onclick="document.getElementById('id01').style.display='block'">
+      Log in
+    </button>
 
     <script src="index.js"></script>
 
-    <button class="open-signup" onclick="openSign()">Sign up</button>
+    <button onclick="document.getElementById('id02').style.display='block'">
+      Sign up
+    </button>
 
-    <div class="signup-form" id="signup" style="display: none;">
-        <form action="action_page.php">
+  </div>
 
-                <h1>Sign Up</h1>
-                <p>Enter your information below to sign up</p>
-                <hr>
+  <!-- Sign in Modal -->
+  <div id="id01" class="modal">
+    <span onclick="document.getElementById('id01').style.display='none'" class="close"
+      title="Close Modal">&times;</span>
 
-                <label for="email">Email</label>
-                <br>
-                <input type="text" id="email" name="email" required><br>
+    <!-- Modal Content -->
+    <form class="modal-content animate" action="/action_page.php">
+      <div class="imgcontainer">
+        <img src="avatar.png" alt="Avatar" class="avatar" height="100px" />
+      </div>
 
-                <label for="makePassw">Password:</label><br>
-                <input type="password" id="makePassw" name="makePassw" minlength="8" required><br>
+      <div class="container">
+        <label for="uname"><b>Username</b></label>
+        <input type="text" placeholder="Enter Username" name="uname" required />
+        </br>
+        <label for="psw"><b>Password</b></label>
+        <input type="password" placeholder="Enter Password" name="psw" required />
+        </br>
+        <span class="psw">Forgot <a href="#">password?</a></span>
+        </br>
+        <label>
+          <input type="checkbox" name="remember" /> 
+          Remember me
+        </label>
+      </div>
 
-                <label for="re-Passw">Re-enter Password:</label><br>
-                <input type="password" id="re-Passw" name="re-Passw" minlength="8" required><br>
+      <div class="container" style="background-color:#f1f1f1">
+        <button type="submit">Login</button>
+        <button type="button" onclick="document.getElementById('id01').style.display='none'" class="cancelbtn">
+          Cancel
+        </button>
 
-                <button type="button" id="cancel" name="cancel" onclick="closeSign()">Cancel</button>
-                <button type="submit">Submit</button>
+      </div>
+    </form>
+  </div>
+  <script>
+    // Get the modal
+    var modal = document.getElementById("id01");
 
-        </form>
-    </div>
+    // When the user clicks anywhere outside of the modal, close it
+    window.onclick = function (event) {
+      if (event.target == modal) {
+        modal.style.display = "none";
+      }
+    };
+  </script>
 
-</center>
+  <!-- Sign up modal-->
+  <div id="id02" class="modal">
+    <span onclick="document.getElementById('id02').style.display='none'" class="close"
+      title="Close Modal">&times;</span>
+
+    <!-- Modal Content -->
+    <form class="modal-content animate" action="/action_page.php">
+      <div class="imgcontainer">
+        <img src="avatar.png" alt="Avatar" class="avatar" height="100px" />
+      </div>
+
+      <div class="container">
+        <p>* indicates a required field</p>
+        <label for="uname"><b>*E-mail Address</b></label>
+        </br>
+        <input type="text" placeholder="Enter E-mail address" name="email" required />
+        </br>
+        <label for="uname"><b>*Username</b></label>
+        </br>
+        <input type="text" placeholder="Enter Username" name="uname" required />
+        </br>
+        <label for="psw"><b>*Password</b></label>
+        </br>
+        <input type="password" placeholder="Enter Password" name="psw" required />
+        </br>
+        <label for="psw"><b>*Re-Enter Password</b></label>
+        </br>
+        <input type="password" placeholder="Re-enter Password" name="rpsw" required />
+        </br>
+
+
+      </div>
+
+      <div class="container" style="background-color:#f1f1f1">
+        <button type="submit">Sign-up</button>
+        <button type="button" onclick="document.getElementById('id02').style.display='none'" class="cancelbtn">
+          Cancel
+        </button>
+      </div>
+    </form>
+  </div>
+  <script>
+    // Get the modal
+    var modal = document.getElementById("id02");
+
+    // When the user clicks anywhere outside of the modal, close it
+    window.onclick = function (event) {
+      if (event.target == modal) {
+        modal.style.display = "none";
+      }
+    };
+  </script>
+</body>
 
 </html>
