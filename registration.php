@@ -10,11 +10,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     if ($_POST['psw'] == $_POST['Cpsw']) {
 
         $username = $mysqli->real_excape_string($_POST['uname']);
-        $email = $mysqli->real_excape_string($_POST['email')]);
+        $email = $mysqli->real_excape_string($_POST['email']);
         $password = md5($_POST['psw']);
         
-        $sql = "INSERT INTO users (username, email, password) "
-            . "VALUES ('$username', '$email', '$password')";
+        $_SESSION['uname'] = $username;
+        
+        $sql = "INSERT INTO users (email, username, password) "
+                . "VALUES ('$email', '$username', '$password')";
 
         if ($mysqli->query($sql) === true) {
             $_SESSION['message'] = 'Registration succesful!';
