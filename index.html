@@ -80,12 +80,12 @@
       <div class="imgcontainer">
         <img src="avatar.png" alt="Avatar" class="avatar" height="100px" />
       </div>
-
+      
       <div class="container">
         <p>* indicates a required field</p>
         <label for="uname"><b>*E-mail Address</b></label>
         </br>
-        <input type="text" placeholder="Enter E-mail address" name="email" required />
+        <input type="text" placeholder="Enter E-mail address" name="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" required />
         </br>
         <label for="uname"><b>*Username</b></label>
         </br>
@@ -93,17 +93,21 @@
         </br>
         <label for="psw"><b>*Password</b></label>
         </br>
-        <input type="password" placeholder="Enter Password" name="psw" required />
+        <input type="password" placeholder="Enter Password" name="psw" id="psw" onkeyup='check();' required />
         </br>
         <label for="Cpsw"><b>*Confirm Password</b></label>
         </br>
-        <input type="password" placeholder="Enter Password" name="Cpsw" required />
+        <input type="password" placeholder="Enter Password" name="Cpsw" id="Cpsw" onkeyup='check();' required />
         </br>
 
       </div>
 
+      <div class"alert" id="checkpasswordmatch">
+        <p id="matchpassword" class="invalid"> Passwords must match </p>
+      </div>
+
       <div class="container" style="background-color:#f1f1f1">
-        <input type="submit" value="Register" name="register" class="button" />
+        <input type="submit" value="Register" name="register" class="button" id="submit"/>
         <button type="button" onclick="document.getElementById('id02').style.display='none'" class="cancelbtn">
           Cancel
         </button>
@@ -111,21 +115,9 @@
     </form>
   </div>
 
-  <!-- Closes if clicked not on modal script-->
-  <script>
-    // Get the modal
-    var modal = document.getElementById("id01");
-    var modal2 = document.getElementById("id02");
-
-    // When the user clicks anywhere outside of the modal, close it
-    window.onclick = function (event) {
-      if ((event.target == modal) || (event.target == modal2)) {
-        modal.style.display = "none";
-        modal2.style.display = "none";
-      }
-    };
-  </script>
-
 </body>
+
+<!-- Closes if clicked not on modal script-->
+<script src="index.js"></script>
 
 </html>
