@@ -1,34 +1,24 @@
 import java.awt.EventQueue;
 
-import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JLayeredPane;
 import java.awt.BorderLayout;
 import java.awt.Panel;
 import java.awt.Color;
-import java.awt.Canvas;
 import java.awt.Font;
 import javax.swing.JTextField;
-import java.awt.GridLayout;
-import java.awt.CardLayout;
-import java.awt.FlowLayout;
 import javax.swing.JPasswordField;
 import javax.swing.JButton;
 import javax.swing.JPanel;
 import java.awt.event.ActionListener;
-import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.FileNotFoundException;
-import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.io.Writer;
 import java.util.ArrayList;
 import java.awt.event.ActionEvent;
-import javax.swing.JList;
 import javax.swing.JRadioButton;
-import javax.swing.JComboBox;
 
 public class Login {
 	
@@ -40,34 +30,17 @@ public class Login {
 	private JTextField enterUser;
 	private JPasswordField createPassword;
 	private JPasswordField reEnterPass;
-
-	public ArrayList<User> getUsers(ArrayList<User> users) throws FileNotFoundException {
-		try {
-			BufferedReader info = new BufferedReader(new FileReader(filePath + "/src/UserInfo.txt"));
-			String user = "";
-			while (user != null) {
-				user = info.readLine();
-				String pass = info.readLine();
-				String authority = info.readLine();
-				users.add(new User(user,pass,authority));
-			}
-			info.close();
-		} catch(IOException e) {
-			e.printStackTrace();
-		}
-		return users;
-	}
 	
 	public void writeInfo(String user, String pass, String authority) throws FileNotFoundException{
 		try {
 			FileWriter write = new FileWriter(filePath + "/src/UserInfo.txt", true);
 			BufferedWriter info = new BufferedWriter(write);
-			info.newLine();
 			info.write(user);
 			info.newLine();
 			info.write(pass);
 			info.newLine();
 			info.write(authority);
+			info.newLine();
 			info.close();
 		} catch (IOException e){
 			e.printStackTrace();
@@ -231,7 +204,7 @@ public class Login {
 				ArrayList<User> users = new ArrayList<User>();
 				boolean taken = false;
 				try {
-					getUsers(users);
+					User.getUsers(users);
 				} catch (FileNotFoundException e1) {
 					e1.printStackTrace();
 				}
@@ -244,7 +217,8 @@ public class Login {
 						}
 					}
 				} else {
-					//message saying Username must be longer than 1 character
+					//message saying Username must be longer than 1 character (not implemented visually)
+					System.out.println("Username must be longer than 1 character");
 				}
 				if (taken == false) {
 					boolean researcher = rdbtnResearcher.isSelected();
@@ -255,36 +229,42 @@ public class Login {
 						if (pass1.equals(pass2) && reviewer) {
 							try {
 								writeInfo(user, pass1, "REVIEWER");
-								// Confirmation message
+								// Confirmation message (not implemented visually)
+								System.out.println("Sign-up done");
 							} catch (FileNotFoundException e1) {
 								e1.printStackTrace();
 							}
 						} else if (pass1.equals(pass2) && researcher){
 							try {
 								writeInfo(user, pass1, "RESEARCHER");
-								// Confirmation message
+								// Confirmation message (not implemented visually)
+								System.out.println("Sign-up done");
 							} catch (FileNotFoundException e1) {
 								e1.printStackTrace();
 							}
 						} else {
-							//show message passwords must match
+							//show message passwords must match (not implemented visually)
+							System.out.println("Passwords must match");
 						}
 					} else {
-						// show message saying choose one only
+						// show message saying choose one only (not implemented visually)
+						System.out.println("Only Choose one of Reviewer or Researcher");
 					}
 				} else {
-					// show message saying choose another name
+					// show message saying choose another name (not implemented visually)
+					System.out.println("Username is taken");
 				}
 			}
 		});
-		
+		// logs user in and opens new window based on authority
 		btnLogin.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				ArrayList<User> users = new ArrayList<User>();
+				User logged = new User();
 				boolean isPasswordCorrect = false;
 				String userAccessLevel = "";
 				try {
-					getUsers(users);
+					User.getUsers(users);
 				} catch (FileNotFoundException e1) {
 					e1.printStackTrace();
 				}
@@ -304,19 +284,42 @@ public class Login {
 							} 
 							isPasswordCorrect = true;
 							userAccessLevel = users.get(i).getAccsessLevel();
+							logged = users.get(i);
 						}
 						break;
 					}
 				}
+				if (isPasswordCorrect == false) {
+					// display password or username is incorrect message (not implemented visually)
+					System.out.println("Incorrect Username or Password");
+				}
 				if (isPasswordCorrect && userAccessLevel.equals("EDITOR")) {
-					System.out.print(userAccessLevel);
+					frame.setVisible(false);
 					try {
 						Editor log = new Editor();
 						log.frame.setVisible(true);
 					} catch (Exception e2) {
 						e2.printStackTrace();
 					}
-				}		
+				} else if(isPasswordCorrect && userAccessLevel.equals("RESEARCHER")) {
+					frame.setVisible(false);
+					try {
+						Researcher log = new Researcher();
+						log.loggedIn = logged;
+						log.frame.setVisible(true);
+					} catch (Exception e2) {
+						e2.printStackTrace();
+					}
+				} else if(isPasswordCorrect && userAccessLevel.equals("REVIEWER")) {
+					frame.setVisible(false);
+					try {
+						Reviewer log = new Reviewer();
+						log.loggedIn = logged;
+						log.frame.setVisible(true);
+					} catch (Exception e2) {
+						e2.printStackTrace();
+					}
+				}	
 			}
 		});
 	}
