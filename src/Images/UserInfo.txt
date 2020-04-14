@@ -1,0 +1,15 @@
+Jeff01
+password
+EDITOR
+testReviewer1
+pass
+REVIEWER
+testResearcher1
+pass
+RESEARCHER
+testReviewer2
+pass
+REVIEWER
+testReviewer3
+pass
+REVIEWER
